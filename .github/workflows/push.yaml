@@ -31,4 +31,4 @@ jobs:
               --access-token "${{ secrets.GITHUB_TOKEN }}" \
              --aqua-key "${{ secrets.AQUA_KEY }}" \
              --aqua-secret "${{ secrets.AQUA_SECRET }}" \
-             --artifact-path .
+             --artifact-path "my-efs-pov-test/vulpy:${{ github.sha }}"
