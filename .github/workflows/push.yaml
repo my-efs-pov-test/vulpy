@@ -22,3 +22,23 @@ jobs:
           security-checks: 'vuln,config,secret'
           hide-progress: false
           format: 'table'
+        env:
+          AQUA_KEY: ${{ secrets.AQUA_KEY }}
+          AQUA_SECRET: ${{ secrets.AQUA_SECRET }}
+          TRIVY_RUN_AS_PLUGIN: 'aqua'
+          TRIGGERED_BY: 'PUSH'
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          push: true
+          tags: "aquajcampbell/graphql-vuln:${{ github.sha }}"
+      - name: Manifest Generation
+        run: |
+          docker image ls
+          curl -L ${{ secrets.BILLY_URL }}/v1/api/download/sh | sh
+          billy generate \
+              --access-token "${{ secrets.GITHUB_TOKEN }}" \
+             --aqua-key "${{ secrets.AQUA_KEY }}" \
+             --aqua-secret "${{ secrets.AQUA_SECRET }}" \
+             --artifact-path .
