@@ -18,6 +18,7 @@ jobs:
           hide-progress: false
           format: 'table'
           # Customizing which severities are scanned for is done by adding the following flag: severity: 'UNKNOWN','LOW','MEDIUM','HIGH','CRITICAL'
+          # comment
         env:
           AQUA_KEY: ${{ secrets.AQUA_KEY }}
           AQUA_SECRET: ${{ secrets.AQUA_SECRET }}
