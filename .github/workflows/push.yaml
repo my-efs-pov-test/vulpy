@@ -27,7 +27,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: "aquajcampbell/vulpy:${{ github.sha }}"
+          tags: "my-efs-pov-test/vulpy:${{ github.sha }}"
       - name: Manifest Generation
         run: |
           docker image ls
@@ -36,4 +36,4 @@ jobs:
               --access-token "${{ secrets.GITHUB_TOKEN }}" \
              --aqua-key "${{ secrets.AQUA_KEY }}" \
              --aqua-secret "${{ secrets.AQUA_SECRET }}" \
-             --artifact-path "aquajcampbell/vulpy:${{ github.sha }}"
+             --artifact-path "my-efs-pov-test/vulpy:${{ github.sha }}"
